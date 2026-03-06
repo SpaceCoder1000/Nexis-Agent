@@ -14,4 +14,4 @@
 "are you connected to the wifi"
 "am i connected to wifi"
 "am i connected to the wifi"
-"Is github working"
+"is github working"
