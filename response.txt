@@ -1,0 +1,7 @@
+random.choice(('Hello.', 'Hey whats up. ', 'Wassup.'))
+random.choice(('I am doing well, thank you for asking.', 'I am doing great, Thanks for asking.'))
+random.choice((f"The time is {now.strftime('%H:%M')}.", f"It's currently {now.strftime('%H:%M')}.", f"The current time is {now.strftime('%H:%M')}."))
+random.choice((f"Today's date is {now.strftime('%m-%d-%Y')}.", f"The date today is {now.strftime('%m-%d-%Y')}.", f"It's currently {now.strftime('%m-%d-%Y')}."))
+random.choice((f"Your wifi is {is_connected()} connected.", f"Your wfif right now is {is_connected()} connected.", f"Your wifi is currently {is_connected()} connected."))
+random.choice((f"My wifi is {is_connected()} connected.", f"My wfif right now is {is_connected()} connected.", f"My wifi is currently {is_connected()} connected."))
+random.choice((f"Your github seems to be working okay.", f"Your github is working just fine.","You are currently connected to github."))
