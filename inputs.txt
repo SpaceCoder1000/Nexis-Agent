@@ -17,3 +17,5 @@ am i connected to the wifi
 is github working
 what's your name
 what is your name
+temprature
+weather
