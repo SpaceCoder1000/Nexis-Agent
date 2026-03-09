@@ -6,4 +6,4 @@
 {random.choice((f"My wifi is {is_connected()} connected.", f"My wfif right now is {is_connected()} connected.", f"My wifi is currently {is_connected()} connected."))}
 {random.choice((f"Your github seems to be working okay.", f"Your github is working just fine.","You are currently connected to github."))}
 {random.choice(("My name is Nexis","Oh, my name is Nexis"))}
-{random.choice(("The temprature outisde in {city} is {getweather()}",The temprature is {getweather()} in {city}","In {city} the temprature is {getweather()}"))}
+{random.choice(("The temprature outisde in {city} is {getweather()}","The temprature is {getweather()} in {city}","In {city} the temprature is {getweather()}"))}
