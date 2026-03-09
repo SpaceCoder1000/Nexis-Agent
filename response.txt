@@ -5,3 +5,4 @@
 {random.choice((f"Your wifi is {is_connected()} connected.", f"Your wfif right now is {is_connected()} connected.", f"Your wifi is currently {is_connected()} connected."))}
 {random.choice((f"My wifi is {is_connected()} connected.", f"My wfif right now is {is_connected()} connected.", f"My wifi is currently {is_connected()} connected."))}
 {random.choice((f"Your github seems to be working okay.", f"Your github is working just fine.","You are currently connected to github."))}
+{random.choice(("My name is Nexis","Oh, my name is Nexis"))}
