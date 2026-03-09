@@ -4,12 +4,11 @@ what's up
 wassup
 how are you
 how are you doing
-ow's it going
-what's the time
-what time is it
-what's the date today
-what's the date
-what's today's date
+how's it going
+the time
+time is it
+the date
+today date
 are you connected to wifi
 are you connected to the wifi
 am i connected to wifi
