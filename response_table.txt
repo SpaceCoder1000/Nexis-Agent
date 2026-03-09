@@ -9,7 +9,6 @@
 {responses[2]}
 {responses[3]}
 {responses[3]}
-{responses[3]}
 {responses[4]}
 {responses[4]}
 {responses[5]}
