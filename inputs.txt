@@ -15,3 +15,5 @@ are you connected to the wifi
 am i connected to wifi
 am i connected to the wifi
 is github working
+what's your name
+what is your name
