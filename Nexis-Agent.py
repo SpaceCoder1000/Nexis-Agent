@@ -11,6 +11,12 @@ import platform
 import requests
 
 #==============================
+#Define variables
+#==============================
+
+API_KEY = 'OWM_APi'
+
+#==============================
 #Define Time And Date Variables (Up here to be accessible to the Lists)
 #==============================
 
@@ -66,6 +72,28 @@ def is_connected():
         return ""
     except (requests.ConnectionError, requests.Timeout):
         return "not"
+    
+#==============================
+#Get Weather
+#==============================
+
+def getweather():
+    try:        
+        if not city:
+            return "Could not detect city"
+
+        weather = requests.get(
+            f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=imperial"
+        ).json()
+
+        if "main" not in weather:
+            return f"Error: {weather.get('message', 'Unknown error')}"
+
+        temp = weather["main"]["temp"]
+        return f"{temp}°F"
+
+    except Exception as e:
+        print(f"Error: {e}")
 
 #==============================
 #Create Lists (Used by core)
@@ -243,7 +271,7 @@ def add_text(message):
 
 def refresh():
     update_vars()
-    navbar_var.set(f"{now.strftime('%H:%M')} | {now.strftime('%m-%d-%Y')}")
+    navbar_var.set(f"{now.strftime('%H:%M')} | {now.strftime('%m-%d-%Y')} | {city}")
 
 #==============================
 #core loop
@@ -256,6 +284,7 @@ def core_loop():
 #==============================
 #Run App
 #==============================
+
 core_loop()
 add_text(("left", "Hello! I'm Nexis Agent. How can I assist you today?"))
 root.mainloop()
