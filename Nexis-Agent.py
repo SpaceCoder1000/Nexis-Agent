@@ -28,15 +28,43 @@ def update_vars():
     milliseconds = now.microsecond // 1000
 
 #==============================
-#Wifi Connection 
+#Get Github response lists
+#==============================
+
+def get_list_from_github(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            items = response.text.strip().split('\n')
+            return [eval(f'f"""{item}"""') for item in items if item]
+        else:
+            print(f"Failed to fetch file. Status code: {response.status_code}")
+            return []
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+        return []
+    
+#==============================
+#Get Ip Address
+#==============================
+
+ip = requests.get("https://api.ipify.org").text
+city = requests.get(f"https://ipinfo.io/{ip}/json").json().get("city")
+        
+if not city:
+    print("Could not detect city")
+else:
+    print(f"Detected city: {city}")
+
+#==============================
+#Check Wifi Connection
 #==============================
 
 def is_connected():
     try:
-        # Pinging Google DNS to check for internet connection
-        subprocess.check_output(["ping", "-c", "1", "8.8.8.8"], stderr=subprocess.STDOUT)
+        requests.get("https://www.google.com", timeout=5)
         return ""
-    except subprocess.CalledProcessError:
+    except (requests.ConnectionError, requests.Timeout):
         return "not"
 
 #==============================
@@ -89,6 +117,19 @@ response_table = [
     f"{responses[5]}"
 ]
 
+#==============================
+#Update Response Table With Github Lists
+#==============================
+
+try:
+    inputs = get_list_from_github("https://raw.githubusercontent.com/SpaceCoder1000/Nexis-Agent/refs/heads/main/inputs.txt")
+    responses = get_list_from_github("https://raw.githubusercontent.com/SpaceCoder1000/Nexis-Agent/refs/heads/main/response.txt")
+    response_table = get_list_from_github("https://raw.githubusercontent.com/SpaceCoder1000/Nexis-Agent/refs/heads/main/response_table.txt")
+    print(inputs)
+    print(responses)
+    print(response_table)
+except Exception as e:
+    print(f"An error occurred while fetching GitHub lists: {e}")
 
 #==============================
 #Core Response Generator
@@ -203,11 +244,18 @@ def add_text(message):
 def refresh():
     update_vars()
     navbar_var.set(f"{now.strftime('%H:%M')} | {now.strftime('%m-%d-%Y')}")
-    root.after(50, refresh)
+
+#==============================
+#core loop
+#============================== 
+
+def core_loop():
+    refresh()
+    root.after(10, core_loop)
 
 #==============================
 #Run App
 #==============================
-refresh()
+core_loop()
 add_text(("left", "Hello! I'm Nexis Agent. How can I assist you today?"))
 root.mainloop()
